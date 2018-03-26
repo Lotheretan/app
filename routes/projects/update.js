@@ -1,7 +1,8 @@
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
 import Ember from 'ember';
-import EmberObject from '@ember/object';
+import EmberObject, {set,get} from '@ember/object';
+
 
 export default Route.extend({
   templateName: 'projects/frm',
@@ -15,8 +16,8 @@ export default Route.extend({
     let newProject=EmberObject.create(JSON.parse(JSON.stringify(model.oldProject)));
     newProject.set('startDate',new Date(model.oldProject.get('startDate')));
     newProject.set('dueDate',new Date(model.oldProject.get('dueDate')));
-    Ember.set(model,'newProject',newProject);
-    Ember.set(model,'idDeveloper',model.oldProject.get('owner').get('id'));
+    set(model,'newProject',newProject);
+    set(model,'idDeveloper',model.oldProject.get('owner').get('id'));
   },
   actions: {
     save(oldProject,newProject) {
@@ -25,8 +26,8 @@ export default Route.extend({
       oldProject.set('description',newProject.description);
       oldProject.set('startDate',newProject.startDate);
       oldProject.set('dueDate',newProject.dueDate);
-      let idDeveloper = Ember.get(model, 'idDeveloper');
-      let dev = Ember.get(model, 'developers').find(dev => dev.id == idDeveloper);
+      let idDeveloper = get(model, 'idDeveloper');
+      let dev = get(model, 'developers').find(dev => dev.id == idDeveloper);
       oldProject.set('owner', dev);
       oldProject.save().then(
         ()=>{this.transitionTo("projects");});
