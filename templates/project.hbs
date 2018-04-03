@@ -21,7 +21,8 @@
           {{story.developer.identity}}
         </a>
         <div>
-          {{#link-to "projects" class="ui button"}}<i class="user icon"></i> Update...{{/link-to}}
+          <!-- <a {{action "update" story}} class="ui button"><i class="ui edit icon"></i>Update...</a>-->
+         {{#link-to "story.update" story.id class="ui button"}}<i class="user icon"></i> Update...{{/link-to}}
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import Route from '@ember/routing/route';
-import EmberObject from '@ember/object';
+import EmberObject, {set,get} from '@ember/object';
 import RSVP from 'rsvp';
 import Ember from 'ember';
 
@@ -23,7 +23,7 @@ export default Route.extend({
     },
     save(oldStory, story){
       let model = this.modelFor(this.routeName);
-      let project=Ember.get(model,'project');
+      let project=get(model,'project');
       story = this.get('store').createRecord('story',{code: story.code, description:story.description,project:project});
       let idDeveloper = Ember.get(model, 'idDeveloper');
       let dev = Ember.get(model, 'developers').find(dev => dev.id == idDeveloper);
