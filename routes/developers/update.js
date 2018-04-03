@@ -9,12 +9,12 @@ export default Route.extend({
     });
   },
   afterModel(model){
-   Set(model,'data',EmberObject.create(JSON.parse(JSON.stringify(model.dev))));
+   set(model,'data',EmberObject.create(JSON.parse(JSON.stringify(model.dev))));
   },
   actions:{
     save(dev,data){
-     Set(dev,'identity',data.identity);
-     Set(dev,'password',data.password);
+     set(dev,'identity',data.identity);
+     set(dev,'password',data.password);
      dev.save().then(()=>{
        this.transitionTo("developers");
      })
