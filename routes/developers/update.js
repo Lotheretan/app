@@ -14,6 +14,7 @@ export default Route.extend({
   actions:{
     save(dev,data){
      Ember.set(dev,'identity',data.identity);
+     Ember.set(dev,'password',data.password);
      dev.save().then(()=>{
        this.transitionTo("developers");
      })

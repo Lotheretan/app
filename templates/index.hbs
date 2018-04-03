@@ -1,3 +1,25 @@
-<div class="ui segment">Index</div>
+<form class="form-horizontal" {{action "login" on="submit"}}>
+  <div class="control-group">
+    <div class="control-label">
+      <label>Identity</label>
+    </div>
+
+    <div class="controls">
+      {{input value=username type="text"}}
+    </div>
+  </div>
+
+  <div class="control-group">
+    <div class="control-label">
+      <label>Password</label>
+    </div>
+
+    <div class="controls">
+      {{input value=password type="password"}}
+    </div>
+  </div>
+
+  <button type="submit" class="btn">Connexion</button>
+</form>
 
 {{outlet}}
