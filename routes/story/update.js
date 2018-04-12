@@ -4,7 +4,6 @@ import RSVP from 'rsvp';
 
 export default Route.extend({
   model(params){
-    debugger;
     return new RSVP.hash({
       story: this.get('store').findRecord('story',params.story_id),
       project: this.modelFor("project"),
