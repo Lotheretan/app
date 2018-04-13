@@ -7,8 +7,7 @@ export default Route.extend({
   actions:{
     save:function(oldValue,newValue){
       let developer=this.get('store').createRecord('developer',JSON.parse(JSON.stringify(newValue)));
-      developer.save().then(()=>{this.transitionTo("developers");}).
-      catch((error)=>console.log(error));
+      developer.save().then(()=>{this.transitionTo("developers");})
     },
     cancel(){
       this.transitionTo("developers");

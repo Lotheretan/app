@@ -1,6 +1,5 @@
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
-import Ember from 'ember';
 import EmberObject, {set,get} from '@ember/object';
 
 

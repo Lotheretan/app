@@ -1,4 +1,4 @@
-{{#ui-form newValue=model.data  oldValue=model.oldProject validation="save" cancel="cancel" bigIcon='file' smallIcon='plus' header=model.project.name description='Changing a story in project'}}
+{{#ui-form newValue=model.data  oldValue=model.story validation="save" cancel="cancel" bigIcon='file' smallIcon='plus' header=model.project.name description='Changing a story in project'}}
 
   <div class="field">
     <label for="code">Code</label>
@@ -29,7 +29,7 @@
     </div>
     <div class="field">
       <div class="ui action input">
-        {{input placeholder="tag..." value=model.tag.title}}
+        {{input placeholder="tag..." value=model.data.tag.title}}
         <select onchange={{action (mut model.tag.color) value="target.value"}} class="ui compact selection dropdown">
         {{#each model.colors as |color|}}
           <option value="{{color}}">{{color}}</option>
