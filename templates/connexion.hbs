@@ -1,7 +1,7 @@
-<form class="form-horizontal" {{action "login" on="submit"}}>
-  <div class="control-group">
+<form class="form-horizontal">
+  <div class="control-group" >
     <div class="control-label">
-      <label>Identity</label>
+      <label style="position: center; margin-left: auto;">Identity</label>
     </div>
 
     <div class="ui input">
@@ -11,7 +11,7 @@
 
   <div class="control-group">
     <div class="control-label">
-      <label>Password</label>
+      <label style="position: relative; margin-left: auto;">Password</label>
     </div>
 
     <div class="ui input">
@@ -19,7 +19,7 @@
     </div>
   </div>
 
-  <button type="submit" class="ui button">Connexion</button>
+  <div class="ui button" {{action 'login'}}>Connexion</div>
 </form>
 
 
