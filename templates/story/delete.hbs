@@ -1,1 +1,6 @@
-{{outlet}}
+{{#message-confirmation uiClass="negative" param=model cancel='cancelDeletion' action='delete'}}
+  Do you want to remove the story `<b>{{model.code}}</b>` ?
+  {{#if model.project.length}}
+    <br><b>{{model.code}}</b> has {{model.project.length}} project(s).
+  {{/if}}
+{{/message-confirmation}}
