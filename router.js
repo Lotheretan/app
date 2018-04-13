@@ -34,6 +34,7 @@ Router.map(function() {
     this.route('delete', {path: 'delete/:step_id'});
   });
   this.route('connexion');
+  this.route('developer');
 });
 
 export default Router;
