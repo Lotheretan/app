@@ -33,6 +33,7 @@ Router.map(function() {
     this.route('update', {path: 'update/:step_id'});
     this.route('delete', {path: 'delete/:step_id'});
   });
+  this.route('connexion');
 });
 
 export default Router;
