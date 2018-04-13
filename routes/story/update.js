@@ -1,6 +1,7 @@
 import Route from '@ember/routing/route';
 import EmberObject, {set,get} from '@ember/object';
 import RSVP from 'rsvp';
+import Ember from 'ember';
 
 export default Route.extend({
   model(params){
@@ -35,7 +36,6 @@ export default Route.extend({
       let idTags=get(model,'idTags');
       let tags=get(model,'tags').filter((item, index) => idTags.includes(item.id));
       story.set('tags',tags);
-      let self=this;
       story.save().then(()=>{
         project.save().then(()=>{this.transitionTo("project",project);});
       })
