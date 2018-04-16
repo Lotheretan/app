@@ -18,6 +18,8 @@ Router.map(function() {
     this.route('delete',{ path: 'delete/:developer_id' });
   });
   this.route('project',{ path: 'project/:project_id' });
+  this.route('connexion');
+  this.route('developer',{ path: 'developer/:developer_id' });
 
   this.route('story', function() {
     this.route('new', {path: 'new/:project_id'});
@@ -33,8 +35,7 @@ Router.map(function() {
     this.route('update', {path: 'update/:step_id'});
     this.route('delete', {path: 'delete/:step_id'});
   });
-  this.route('connexion');
-  this.route('developer');
+
 });
 
 export default Router;
