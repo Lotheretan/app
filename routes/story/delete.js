@@ -1,4 +1,8 @@
-import Route from '@ember/routing/route';
+import DeleteRoute from '../delete-route';
 
-export default Route.extend({
+export default DeleteRoute.extend({
+  getRedirectRoute(){
+    return "story";
+  }
+
 });

@@ -36,8 +36,10 @@ export default Route.extend({
       let idTags=get(model,'idTags');
       let tags=get(model,'tags').filter((item, index) => idTags.includes(item.id));
       story.set('tags',tags);
+      let self=this;
       story.save().then(()=>{
-        project.save().then(()=>{this.transitionTo("project",project);});
+        project.save().then(()=>{
+          self.transitionTo("project",project);});
       })
     },
     cancel(){
