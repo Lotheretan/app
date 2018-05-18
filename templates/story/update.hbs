@@ -10,7 +10,7 @@
   </div>
   <div class="field">
     <label for="developer">Developer</label>
-    {{multi-select selected=model.idDeveloper name="developer" placeholder="Developer" elements=model.developers selectedElements=model.story.developer}}
+    {{multi-select selected=model.idDeveloper name="developer" placeholder="Developer" elements=model.developers selectedElements=model.data.developer }}
   </div>
   <div class="two fields">
     <div class="field">
@@ -29,7 +29,7 @@
     </div>
     <div class="field">
       <div class="ui action input">
-        {{input placeholder="tag..." value=model.data.tag.title}}
+        {{input placeholder="tag..." value=model.tag.title}}
         <select onchange={{action (mut model.tag.color) value="target.value"}} class="ui compact selection dropdown">
         {{#each model.colors as |color|}}
           <option value="{{color}}">{{color}}</option>

@@ -18,6 +18,9 @@ export default Route.extend({
   },
   afterModel(model){
     set(model,'data',EmberObject.create(JSON.parse(JSON.stringify(model.story))));
+    let dev=get(model,"story");
+    set(model,'idDeveloper',get(dev, "developer").id);
+
   },
   actions:{
     didTransition() {
