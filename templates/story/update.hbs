@@ -2,15 +2,15 @@
 
   <div class="field">
     <label for="code">Code</label>
-    {{input id="code" placeholder="Code" value=model.story.code}}
+    {{input id="code" placeholder="Code" value=model.data.code}}
   </div>
   <div class="field">
     <label for="description">Description</label>
-    {{textarea id="description" placeholder="Description" value=model.story.description}}
+    {{textarea id="description" placeholder="Description" value=model.data.description}}
   </div>
   <div class="field">
     <label for="developer">Developer</label>
-    {{multi-select selected=model.idDeveloper name="developer" placeholder="Developer" elements=model.developers selectedElements=model.story.developer}}
+    {{multi-select selected=model.idDeveloper name="developer" placeholder="Developer" elements=model.developers selectedElements=model.story.developer.identity}}
   </div>
   <div class="two fields">
     <div class="field">
