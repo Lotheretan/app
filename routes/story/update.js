@@ -4,45 +4,45 @@ import RSVP from 'rsvp';
 import Ember from 'ember';
 
 export default Route.extend({
-  model(params){
-    return new RSVP.hash({
-      story: this.get('store').findRecord('story',params.story_id),
-      project: this.modelFor("project"),
-      developers: this.get('store').findAll('developer'),
-      idDeveloper:[],
-      idTags:[],
-      tags: this.get('store').findAll('tag'),
-      colors:['black','blue','green','orange','pink','purple','red','teal','yellow','positive','negative'],
-      tag: EmberObject.create({})
+    templateName: "story/update",
+    model(params){
+    return RSVP.hash({
+        oldStory    : this.get('store').findRecord('story',params.story_id),
+        developers  : this.get('store').findAll('developer'),
+        project     : this.modelFor('project')
     });
   },
   afterModel(model){
-    set(model,'data',EmberObject.create(JSON.parse(JSON.stringify(model.story))));
+      let newStory=EmberObject.create(JSON.parse(JSON.stringify(model.oldStory)));
+      Ember.set(model,'newStory',newStory);
+      Ember.set(model,'idDeveloper',model.oldStory.get('developer').get('id'));
   },
   actions:{
     didTransition() {
       Ember.run.next(this, 'initUI');
     },
-    save(story,data){
+    save(oldStory,story){
 
       let model = this.modelFor(this.routeName);
-      let project=get(model,'project');
-      set(story,'code',data.code);
-      set(story,'description',data.description);
-      let idDeveloper = get(model, 'idDeveloper');
-      let dev =get(model, 'developers').find(dev => dev.id == idDeveloper);
-      story.set('developer', dev);
+      let project=Ember.get(model,'project');
+      oldStory.set('code',newStory.code);
+      oldStory.set('description',newStory.description);
+      oldStory.set('project', project);
+      let idDeveloper = Ember.get(model, 'idDeveloper');
+      let dev =Ember.get(model, 'developers').find(dev => dev.id == idDeveloper);
+      oldStory.set('developer', dev);
 
-      let idTags=get(model,'idTags');
-      let tags=get(model,'tags').filter((item, index) => idTags.includes(item.id));
-      story.set('tags',tags);
+      let idTags=Ember.get(model,'idTags');
+      let tags=Ember.get(model,'tags').filter((item, index, self) => idTags.includes(item.id));
+      oldStory.set('tags',tags);
+      let self = this;
       story.save().then(()=>{
         project.save().then(()=>{this.transitionTo("project",project);});
       })
     },
     cancel(){
       let model = this.modelFor(this.routeName);
-      let project=get(model,'project');
+      let project=Ember.get(model,'project');
       this.transitionTo("project",project);
     },
     newTag(tag){
@@ -51,7 +51,7 @@ export default Route.extend({
       tag.save().then(()=>{
         let model = self.modelFor(this.routeName);
         Ember.$('#ddTags').dropdown('set selected',tag.id);
-        set(model,'tag',EmberObject.create({}));
+        Ember.set(model,'tag',EmberObject.create({}));
       });
     }
   },

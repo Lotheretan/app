@@ -9,12 +9,12 @@ export default Route.extend({
     });
   },
   afterModel(model){
-   set(model,'data',EmberObject.create(JSON.parse(JSON.stringify(model.dev))));
+   Ember.set(model,'data',EmberObject.create(JSON.parse(JSON.stringify(model.dev))));
   },
   actions:{
     save(dev,data){
-     set(dev,'identity',data.identity);
-     set(dev,'password',data.password);
+     Ember.set(dev,'identity',data.identity);
+     Ember.set(dev,'password',data.password);
      dev.save().then(()=>{
        this.transitionTo("developers");
      })

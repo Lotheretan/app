@@ -5,6 +5,7 @@ import Ember from 'ember';
 
 
 export default Route.extend({
+    templateName: 'story/new',
   model(params){
     return RSVP.hash({
       story: EmberObject.create(),
@@ -14,7 +15,8 @@ export default Route.extend({
       idTags:[],
       tags: this.get('store').findAll('tag'),
       colors:['black','blue','green','orange','pink','purple','red','teal','yellow','positive','negative'],
-      tag: EmberObject.create({})
+      tag: EmberObject.create({}),
+        isNew: true
     });
   },
   actions:{

@@ -15,8 +15,8 @@ export default Route.extend({
     let newProject=EmberObject.create(JSON.parse(JSON.stringify(model.oldProject)));
     newProject.set('startDate',new Date(model.oldProject.get('startDate')));
     newProject.set('dueDate',new Date(model.oldProject.get('dueDate')));
-    set(model,'newProject',newProject);
-    set(model,'idDeveloper',model.oldProject.get('owner').get('id'));
+    Ember.set(model,'newProject',newProject);
+    Ember.set(model,'idDeveloper',model.oldProject.get('owner').get('id'));
   },
   actions: {
     save(oldProject,newProject) {

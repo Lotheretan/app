@@ -6,6 +6,5 @@ export default DS.Model.extend({
   projects: DS.hasMany('project',{inverse:'owner'}),
   toString:function(){
     return this.get('identity');
-    /*return this.get('password');*/
   }
 });
