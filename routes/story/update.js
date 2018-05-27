@@ -4,9 +4,14 @@ import RSVP from 'rsvp';
 import Ember from 'ember';
 
 export default Route.extend({
-    templateName: "story/update",
+    templateName: 'story/update',
     model(params){
     return RSVP.hash({
+        idDeveloper:[],
+        idTags:[],
+        tags: this.get('store').findAll('tag'),
+        colors:['black','blue','green','orange','pink','purple','red','teal','yellow','positive','negative'],
+        story    : this.get('store').findRecord('story',params.story_id),
         oldStory    : this.get('store').findRecord('story',params.story_id),
         developers  : this.get('store').findAll('developer'),
         project     : this.modelFor('project')
@@ -21,23 +26,23 @@ export default Route.extend({
     didTransition() {
       Ember.run.next(this, 'initUI');
     },
-    save(oldStory,story){
+    save(oldStory,newStory){
 
       let model = this.modelFor(this.routeName);
       let project=Ember.get(model,'project');
-      oldStory.set('code',newStory.code);
-      oldStory.set('description',newStory.description);
-      oldStory.set('project', project);
+        oldStory.set('code',newStory.code);
+        oldStory.set('description',newStory.description);
+        oldStory.set('project', project);
       let idDeveloper = Ember.get(model, 'idDeveloper');
       let dev =Ember.get(model, 'developers').find(dev => dev.id == idDeveloper);
-      oldStory.set('developer', dev);
+        oldStory.set('developer', dev);
 
       let idTags=Ember.get(model,'idTags');
       let tags=Ember.get(model,'tags').filter((item, index, self) => idTags.includes(item.id));
-      oldStory.set('tags',tags);
+        oldStory.set('tags',tags);
       let self = this;
-      story.save().then(()=>{
-        project.save().then(()=>{this.transitionTo("project",project);});
+        oldStory.save().then(()=>{
+        project.save().then(()=>{self.transitionTo("project",project);});
       })
     },
     cancel(){

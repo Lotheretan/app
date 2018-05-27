@@ -32,7 +32,7 @@ export default Route.extend({
       story.set('developer', dev);
 
       let idTags=Ember.get(model,'idTags');
-      let tags=Ember.get(model,'tags').filter((item, index) => idTags.includes(item.id));
+      let tags=Ember.get(model,'tags').filter((item, index, self) => idTags.includes(item.id));
       story.set('tags',tags);
       let self=this;
       story.save().then(()=>{

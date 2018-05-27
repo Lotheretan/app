@@ -1,12 +1,12 @@
-{{#ui-form newValue=model.data  oldValue=model.story validation="save" cancel="cancel" bigIcon='file' smallIcon='plus' header=model.project.name description='Changing a story in project'}}
+{{#ui-form newValue=model.newStory  oldValue=model.oldStory validation="save" cancel="cancel" bigIcon='file' isNew=model.isNew smallIcon='plus' header=model.project.name description='Changing a story in project'}}
 
   <div class="field">
     <label for="code">Code</label>
-    {{input id="code" placeholder="Code" value=model.data.code}}
+    {{input id="code" placeholder="Code" value=model.newStory.code}}
   </div>
   <div class="field">
     <label for="description">Description</label>
-    {{textarea id="description" placeholder="Description" value=model.data.description}}
+    {{textarea id="description" placeholder="Description" value=model.newStory.description}}
   </div>
   <div class="field">
     <label for="developer">Developer</label>
@@ -18,7 +18,7 @@
         {{input value=model.idTags type="hidden"}}
         <div class="default text">Choose tags...</div>
         <div class="menu">
-          {{#each model.tags as |tag|}}
+          {{#each model.story.tags as |tag|}}
             <div class="item" data-value="{{tag.id}}">
               <div class="ui {{tag.color}} empty circular label"></div>
               {{tag.title}}
@@ -29,7 +29,7 @@
     </div>
     <div class="field">
       <div class="ui action input">
-        {{input placeholder="tag..." value=model.data.tag.title}}
+        {{input placeholder="tag..." value=model.tag.title}}
         <select onchange={{action (mut model.tag.color) value="target.value"}} class="ui compact selection dropdown">
         {{#each model.colors as |color|}}
           <option value="{{color}}">{{color}}</option>
